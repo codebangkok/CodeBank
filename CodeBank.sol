@@ -1,0 +1,30 @@
+pragma solidity ^0.6.3;
+
+contract CodeBank {
+    
+    uint256 total;
+    event Deposit(uint256 money);
+    event Withdraw(uint256 money);
+    
+    constructor () public {
+        total = 0;
+    }
+    
+    function deposit(uint256 money) public {
+        require(money > 0, "Not enough money");
+        
+        total += money;
+        emit Deposit(money);
+    }
+    
+    function withdraw(uint256 money) public {
+        require(money > 0, "Not enough money");
+        
+        total -= money;
+        emit Withdraw(money);
+    }
+    
+    function balance() public view returns (uint256) {
+        return total;
+    }
+}
